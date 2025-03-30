@@ -1,6 +1,6 @@
 mod command;
 mod config;
-mod validate;
+mod validator;
 
 use crate::config::Config;
 
@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let config_path = args.config;
     let config: Config = config::load(&config_path)?;
-    validate::validate(&config)?;
+    validator::validator(&config)?;
 
     Ok(())
 }
