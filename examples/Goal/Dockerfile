@@ -1,0 +1,9 @@
+FROM ubuntu:latest
+
+ENV USERNAME=cl-aye
+ENV HOME_DIR=/home/$USERNAME
+
+RUN useradd -m -d $HOME_DIR $USERNAME
+
+USER $USERNAME
+WORKDIR $HOME_DIR

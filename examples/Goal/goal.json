@@ -1,0 +1,42 @@
+{
+    "Suite Name": "Testing coreutil 'ls' CLI functionality",
+    "Testcases": {
+        "Testcase 1": {
+            "Description": "Test the ls command within a valid directory",
+            "Enviroment Setup": {
+                "Docker File": "Dockerfile",
+                "Test Setup": [
+                    {
+                        "Step": "Create a directory called 'directory' on user home",
+                        "Command": "mkdir -p /home/$USER/directory"
+                    },
+                    {
+                        "Step": "Create a directory1 within 'directory'",
+                        "Command": "mkdir -p /home/$USER/directory/directory1"
+                    },
+                    {
+                        "Step": "Create a file1.txt within 'directory'",
+                        "Command": "touch /home/$USER/directory/file1.txt"
+                    }
+                ],
+                "Test Teardown": [
+                    {
+                        "Step": "Remove directory called 'directory' on user home",
+                        "Command": "rm -rf /home/$USER/directory"
+                    }
+                ]
+            },
+            "Test Steps": [
+                {
+                    "Step": "Go to the directory /home/cl-aye/directory",
+                    "Command": "cd ~/directory"
+                },
+                {
+                    "Step": "Run the ls command in /home/cl-aye/directory",
+                    "Command": "ls",
+                    "Expected Output": "file1.txt\ndirectory1"
+                }
+            ]
+        }
+    }
+}
